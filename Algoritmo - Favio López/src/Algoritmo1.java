@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -25,32 +26,129 @@ public class Algoritmo1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultArea = new javax.swing.JTextArea();
+        inputField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Busqueda Binaria");
+        buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+
+        resultArea.setColumns(20);
+        resultArea.setRows(5);
+        jScrollPane1.setViewportView(resultArea);
+
+        jLabel1.setText("Búsqueda Binaria");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(155, 155, 155)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(buscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inputField)
+                            .addComponent(jScrollPane1))))
+                .addContainerGap(82, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addGap(153, 153, 153))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(inputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buscar)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+    
+    // Obtener el valor a buscar
+    String input = inputField.getText();
+    
+    // Verificar si el campo de entrada está vacío
+    if(input.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor ingresa un valor a buscar.");
+        return;
+    }
+    
+    // Convertir la entrada a un entero
+    int target;
+    try {
+        target = Integer.parseInt(input);
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Por favor ingresa un entero válido.");
+        return;
+    }
+    
+    // Array para búsqueda lineal
+    int[] array = {10, 72, 32, 62, 84, 93, 23, 5, 24, 12}; // Ejemplo de array
+    
+    // Realizar búsqueda lineal
+    int resultado = busquedaLineal(array, target);
+    
+    // Mostrar resultado
+    if(resultado != -1) {
+        resultArea.setText("Elemento encontrado en la posición " + resultado);
+    } else {
+        resultArea.setText("Elemento no encontrado.");
+    }
+    }//GEN-LAST:event_buscarActionPerformed
+
+    private int busquedaBinaria(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+        
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if(array[mid] == target) {
+                return mid;
+            }
+            
+            if(array[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        
+        return -1; // Elemento no encontrado
+    }
+    
+    private int busquedaLineal(int[] array, int target) {
+    
+        for (int i = 0; i < array.length; i++) {
+        if (array[i] == target) {
+            return i; // Retorna la posición si encuentra el elemento
+        }
+    }
+    return -1; // Retorna -1 si el elemento no se encuentra
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -87,6 +185,10 @@ public class Algoritmo1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscar;
+    private javax.swing.JTextField inputField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea resultArea;
     // End of variables declaration//GEN-END:variables
 }
