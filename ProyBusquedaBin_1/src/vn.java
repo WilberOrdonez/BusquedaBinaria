@@ -36,14 +36,12 @@ public class vn extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         lposicionResul = new javax.swing.JLabel();
         bBuscar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        txValOrd = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Ingrese el tamaño del arreglo:");
+        jLabel1.setText("Ingrese el tamaÃ±o del arreglo:");
 
         jLabel3.setText("Ingrese los valores del arreglo");
 
@@ -65,8 +63,6 @@ public class vn extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Valores en orden:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,33 +70,29 @@ public class vn extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txTamArray, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txValArray)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(147, 147, 147)
+                                .addComponent(bBuscar))))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(lvalorResul)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(lposicionResul))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bBuscar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txTamArray, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(txValArray, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                                    .addComponent(txValOrd))))))
+                        .addComponent(lposicionResul)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -114,16 +106,12 @@ public class vn extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txValArray, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txValOrd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lvalorResul)
                     .addComponent(jLabel6)
@@ -137,7 +125,7 @@ public class vn extends javax.swing.JFrame {
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
 
         int tamArray = Integer.parseInt(txTamArray.getText());
-        int array[] = valoresarray(txValArray.getText());
+        int[] array = valoresarray(txValArray.getText());
         Arrays.sort(array);
         int valorBuscado = Integer.parseInt(txBuscar.getText());
         int posicion = buscarB(array, valorBuscado);
@@ -148,7 +136,7 @@ public class vn extends javax.swing.JFrame {
 
     private int[] valoresarray(String valores) {
         StringTokenizer tokenizer = new StringTokenizer(valores, ",");
-        int array[] = new int[tokenizer.countTokens()];
+        int[] array = new int[tokenizer.countTokens()];
         int i = 0;
 
         while (tokenizer.hasMoreTokens()) {
@@ -159,7 +147,7 @@ public class vn extends javax.swing.JFrame {
     
     }
 
-    private int buscarB(int array[], int target) {
+    private int buscarB(int[] array, int target) {
         int izquierda = 0;
         int derecha = array.length - 1;
 
@@ -175,7 +163,7 @@ public class vn extends javax.swing.JFrame {
             }
         }
 
-        return -1; // Elemento no encontrado
+        return -1; 
     }//GEN-LAST:event_bBuscarActionPerformed
 
     /**
@@ -216,7 +204,6 @@ public class vn extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bBuscar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -226,6 +213,5 @@ public class vn extends javax.swing.JFrame {
     private javax.swing.JTextField txBuscar;
     private javax.swing.JTextField txTamArray;
     private javax.swing.JTextField txValArray;
-    private javax.swing.JTextField txValOrd;
     // End of variables declaration//GEN-END:variables
 }
